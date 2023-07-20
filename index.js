@@ -4,10 +4,11 @@ const timerEl = document.querySelector('span');
 const timerSec = document.querySelector('.sec')
 const timerMin = document.querySelector('.min')
 const timerHour = document.querySelector('.hour')
+let timerId
 
 const createTimerAnimator = (seconds) => {
   return (seconds) => {
-    let timerId = setInterval(() => {
+    timerId = setInterval(() => {
       const sec = Math.floor(seconds % 60)
       const min = Math.floor((seconds / 60) % 60)
       const hour = Math.floor(((seconds / 60) / 60) % 24)
@@ -33,6 +34,7 @@ inputEl.addEventListener('input', (e) => {
 });
 
 buttonEl.addEventListener('click', () => {
+  clearInterval(timerId)
   const seconds = Number(inputEl.value);
 
   if (seconds === 0) {
